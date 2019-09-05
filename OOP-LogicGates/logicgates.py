@@ -62,7 +62,7 @@ class AndGate(BinaryGate):
     def __init__(self, label):
         super(AndGate, self).__init__(label)
 
-    def performGateLogic(self):
+    def performGateLogic(self): # hidden function used by the parent class 1st in the hierchy, we can use getOutput function to call this method 
 
         a = self.getPinA()
         b = self.getPinB()
@@ -73,5 +73,5 @@ class AndGate(BinaryGate):
 
 
 g1 = AndGate('g1')
-out = g1.performGateLogic()
+out = g1.getOutput()
 print(out)
