@@ -33,6 +33,8 @@ types = { 0 : 'Heats', 1...}
 print(ranks[1], types[0])
 
 '''
+import random
+
 
 class Cards:
 
@@ -55,11 +57,27 @@ class Deck(Cards):
 
     def __init__(self):
         Cards.__init__(self)
-        pass
+        self.cardDeck = []
 
     def generateDeck(self):
-        pass
+        for rank in self.ranks:
+            for type in self.types:
+                self.cardDeck.append([rank,type]) # vector stores type and rank
+
+        return self.cardDeck
 
 
-s = Deck()
-print(s.getRank())
+    def getCard(self):
+        random_card = self.cardDeck[random.randint(1,53)] # workd on removing the card after it gets chosen
+        return self.ranks[random_card[0]], self.types[random_card[1]]
+
+
+
+
+
+
+
+card = Deck()
+new_deck = card.generateDeck()
+print(card.getCard())
+print(new_deck)
