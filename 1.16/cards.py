@@ -58,17 +58,26 @@ class Deck(Cards):
     def __init__(self):
         Cards.__init__(self)
         self.cardDeck = []
+        self.generateDeck()
 
     def generateDeck(self):
         for rank in self.ranks:
             for type in self.types:
                 self.cardDeck.append([rank,type]) # vector stores type and rank
-
         return self.cardDeck
 
 
     def getCard(self):
-        random_card = self.cardDeck[random.randint(1,53)] # workd on removing the card after it gets chosen
+        running = True
+        while running:
+            try:
+                random_card = self.cardDeck[random.randrange(0,51)] # workd on removing the card after it gets chosen
+                self.cardDeck.remove(random_card)
+                running = False
+            except:
+                if len(self.cardDeck) == 0:
+                    return 'Deck of card is empty.'
+                running = True
         return self.ranks[random_card[0]], self.types[random_card[1]]
 
 
@@ -78,6 +87,6 @@ class Deck(Cards):
 
 
 card = Deck()
-new_deck = card.generateDeck()
-print(card.getCard())
-print(new_deck)
+for i in range(1,54):
+    print(card.getCard())
+    print(card.cardDeck)
